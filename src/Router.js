@@ -9,7 +9,7 @@ function Router() {
     <BrowserRouter>
       <Switch>
         <Route exact path="/" component={NewTransaction} />
-        <Route exact path="/transacoes" component={ViewTransaction} />
+        <Route exact path="/vendas" component={ViewTransaction} />
       </Switch>
     </BrowserRouter>
   );

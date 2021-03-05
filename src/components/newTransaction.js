@@ -257,7 +257,7 @@ class NewTransaction extends Component {
               Finalizar venda
             </Button>
             <Button variant="contained" color="secondary">
-              <Link to="/transacoes">Vendas realizadas</Link>
+              <Link to="/vendas">Vendas realizadas</Link>
             </Button>
           </div>
         </form>
