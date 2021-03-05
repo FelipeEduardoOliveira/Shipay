@@ -20,18 +20,17 @@ class NewTransaction extends Component {
     };
   }
   componentDidMount() {
-    this.setState({
-      transactions: JSON.parse(localStorage.getItem("transaction")),
-    });
+    // this.setState({
+    //   transactions: JSON.parse(localStorage.getItem("transaction")),
+    // });
   }
   handleSubmit(e) {
-    console.log("chegou 1");
+    console.log("chegou");
     e.preventDefault();
     this.validEmptyField();
   }
 
   validEmptyField() {
-    console.log("chegou 2");
     const state = this.state;
 
     if (state.establishment === "") {
@@ -49,30 +48,28 @@ class NewTransaction extends Component {
       this.setState({ errorMensage: "Digite o valor da compra" });
       return;
     }
-    // this.isValidCPF(state.client);
-
+    // this.isValidCPF(state.client, state.establishment);
     this.saveTransaction();
   }
 
-  // isValidCPF(cpf) {
-  //   console.log("chegou 3");
+  // isValidCPF(cpf, cnpj) {
   //   if (typeof cpf !== "string") return false;
   //   cpf = cpf.replace(/[\s.-]*/gim, "");
-  //   if (cpf.length !== 11)
+  //   if (cpf.length != 11)
   //     return this.setState({ errorMensage: "CPF Incompleto" });
   //   if (
   //     !cpf ||
-  //     cpf.length !== 11 ||
-  //     cpf === "00000000000" ||
-  //     cpf === "11111111111" ||
-  //     cpf === "22222222222" ||
-  //     cpf === "=33333333333" ||
-  //     cpf === "44444444444" ||
-  //     cpf === "55555555555" ||
-  //     cpf === "66666666666" ||
-  //     cpf === "77777777777" ||
-  //     cpf === "88888888888" ||
-  //     cpf === "99999999999"
+  //     cpf.length != 11 ||
+  //     cpf == "00000000000" ||
+  //     cpf == "11111111111" ||
+  //     cpf == "22222222222" ||
+  //     cpf == "33333333333" ||
+  //     cpf == "44444444444" ||
+  //     cpf == "55555555555" ||
+  //     cpf == "66666666666" ||
+  //     cpf == "77777777777" ||
+  //     cpf == "88888888888" ||
+  //     cpf == "99999999999"
   //   ) {
   //     this.setState({ errorMensage: "Não caiu aqui" });
   //   }
@@ -81,42 +78,41 @@ class NewTransaction extends Component {
   //   for (var i = 1; i <= 9; i++)
   //     soma = soma + parseInt(cpf.substring(i - 1, i)) * (11 - i);
   //   resto = (soma * 10) % 11;
-  //   if (resto === 10 || resto === 11) resto = 0;
-  //   if (resto !== parseInt(cpf.substring(9, 10)))
+  //   if (resto == 10 || resto == 11) resto = 0;
+  //   if (resto != parseInt(cpf.substring(9, 10)))
   //     return this.setState({
   //       errorMensage: "CPF inválido",
   //     });
   //   soma = 0;
-  //   for (i = 1; i <= 10; i++)
+  //   for (var i = 1; i <= 10; i++)
   //     soma = soma + parseInt(cpf.substring(i - 1, i)) * (12 - i);
   //   resto = (soma * 10) % 11;
-  //   if (resto === 10 || resto === 11) resto = 0;
-  //   if (resto !== parseInt(cpf.substring(10, 11)))
+  //   if (resto == 10 || resto == 11) resto = 0;
+  //   if (resto != parseInt(cpf.substring(10, 11)))
   //     return this.setState({ errorMensage: "CPF inválido" });
-  //   // this.validarCNPJ(cnpj);
-  //   this.saveTransaction();
+  //   this.validarCNPJ(cnpj);
   // }
 
   // validarCNPJ(cnpj) {
-  //   cnpj = cnpj.replace(/[^\d]+/g, "");
+  //   var cnpj = cnpj.replace(/[^\d]+/g, "");
 
-  //   if (cnpj === "") return false;
+  //   if (cnpj == "") return false;
 
-  //   if (cnpj.length !== 14)
+  //   if (cnpj.length != 14)
   //     return this.setState({ errorMensage: "CNPJ Incompleto" });
 
   //   // Elimina CNPJs invalidos conhecidos
   //   if (
-  //     // cnpj === "00000000000000" ||
-  //     cnpj === "11111111111111" ||
-  //     cnpj === "22222222222222" ||
-  //     cnpj === "33333333333333" ||
-  //     cnpj === "44444444444444" ||
-  //     cnpj === "55555555555555" ||
-  //     cnpj === "66666666666666" ||
-  //     cnpj === "77777777777777" ||
-  //     cnpj === "88888888888888" ||
-  //     cnpj === "99999999999999"
+  //     cnpj == "00000000000000" ||
+  //     cnpj == "11111111111111" ||
+  //     cnpj == "22222222222222" ||
+  //     cnpj == "33333333333333" ||
+  //     cnpj == "44444444444444" ||
+  //     cnpj == "55555555555555" ||
+  //     cnpj == "66666666666666" ||
+  //     cnpj == "77777777777777" ||
+  //     cnpj == "88888888888888" ||
+  //     cnpj == "99999999999999"
   //   )
   //     return false;
 
@@ -131,56 +127,46 @@ class NewTransaction extends Component {
   //     if (pos < 2) pos = 9;
   //   }
   //   var resultado = soma % 11 < 2 ? 0 : 11 - (soma % 11);
-  //   if (resultado !== digitos.charAt(0))
+  //   if (resultado != digitos.charAt(0))
   //     return this.setState({ errorMensage: "CNPJ inválido" });
 
   //   tamanho = tamanho + 1;
   //   numeros = cnpj.substring(0, tamanho);
   //   soma = 0;
   //   pos = tamanho - 7;
-  //   for (i = tamanho; i >= 1; i--) {
+  //   for (var i = tamanho; i >= 1; i--) {
   //     soma += numeros.charAt(tamanho - i) * pos--;
   //     if (pos < 2) pos = 9;
   //   }
   //   resultado = soma % 11 < 2 ? 0 : 11 - (soma % 11);
-  //   if (resultado !== digitos.charAt(1))
+  //   if (resultado != digitos.charAt(1))
   //     return this.setState({ errorMensage: "CNPJ inválido" });
 
   //   // return true;
   //   this.saveTransaction();
   // }
 
-  saveTransaction() {
-    console.log("chegou 4");
-
+  async saveTransaction() {
     const newTransaction = {
       value: this.state.value,
       establishment: this.state.establishment,
       client: this.state.client,
       description: this.state.description,
     };
+    await this.setState({
+      transactions: [...this.state.transactions, newTransaction],
+    });
 
-    console.log("Criou o newTransaction 1");
-    this.setState(
-      {
-        transactions: [...this.state.transactions, newTransaction],
-        value: "",
-        establishment: "",
-        client: "",
-        description: "",
-      }
-      // this.saveStorage
-    );
-    console.log("Adicionou a state");
-
-    // console.log("Limpou os campos");
-
-    // console.log("Chamou o save");
-    this.notify();
+    this.setState({
+      value: "",
+      establishment: "",
+      client: "",
+      description: "",
+    });
+    this.saveStorage();
   }
 
   saveStorage() {
-    console.log("chegou 5");
     localStorage.setItem(
       "transaction",
       JSON.stringify(this.state.transactions)
@@ -189,7 +175,6 @@ class NewTransaction extends Component {
   }
 
   notify() {
-    console.log("chegou 6");
     toast.success("🦄 Wow so easy!", {
       position: "top-center",
       autoClose: 2000,
@@ -198,15 +183,6 @@ class NewTransaction extends Component {
       pauseOnHover: true,
       draggable: true,
       progress: undefined,
-    });
-  }
-
-  preenche() {
-    this.setState({
-      client: "41978635869",
-      value: "45.54",
-      establishment: "40451399000141",
-      description: "teste",
     });
   }
 
@@ -224,9 +200,6 @@ class NewTransaction extends Component {
           draggable
           pauseOnHover
         />
-        <a style={{ color: "black" }} onClick={() => this.preenche()}>
-          Preencher
-        </a>
         <form onSubmit={(e) => this.handleSubmit(e)}>
           <small>{this.state.errorMensage}</small>
           <div className="divInput">
@@ -297,7 +270,7 @@ class NewTransaction extends Component {
             <a
               style={{ color: "blue " }}
               href="https://github.com/FelipeEduardoOliveira/Shipay"
-              // target="_blank"
+              target="_blank"
             >
               Código fonte
             </a>
