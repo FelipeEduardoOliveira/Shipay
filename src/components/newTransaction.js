@@ -264,7 +264,14 @@ class NewTransaction extends Component {
 
         <footer>
           <p>
-            Verificar <a style={{ color: "blue " }}>Código fonte</a>
+            Verificar{" "}
+            <a
+              style={{ color: "blue " }}
+              href="https://github.com/FelipeEduardoOliveira/Shipay"
+              target="_blank"
+            >
+              Código fonte
+            </a>
           </p>
         </footer>
       </div>
