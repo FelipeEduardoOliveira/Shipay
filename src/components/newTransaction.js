@@ -25,6 +25,7 @@ class NewTransaction extends Component {
     });
   }
   handleSubmit(e) {
+    console.log("chegou");
     e.preventDefault();
     this.validEmptyField();
   }
