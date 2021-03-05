@@ -151,18 +151,20 @@ class NewTransaction extends Component {
   saveTransaction() {
     console.log("chegou 4");
 
-    const newTransaction = {
+    const transaction = {
       value: this.state.value,
       establishment: this.state.establishment,
       client: this.state.client,
       description: this.state.description,
     };
 
+    const newTransaction = [...this.state.transactions, transaction];
+
     console.log("Criou o newTransaction");
 
     this.setState(
       {
-        transactions: [...this.state.transactions, newTransaction],
+        transactions: newTransaction,
         value: "",
         establishment: "",
         client: "",
