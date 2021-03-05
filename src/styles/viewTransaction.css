@@ -1,0 +1,48 @@
+.viewTransactionContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  margin-top: 13rem;
+}
+
+.viewTransactionContainer .divButton {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-around;
+}
+
+table {
+  margin: 0;
+  border: 1px solid black;
+}
+table tr th {
+  padding: 5px 42px;
+}
+tr th {
+  /* border: 1px solid gold; */
+  margin: 0;
+
+  padding: 0;
+}
+tr td {
+  border-bottom: 1px solid silver;
+  padding: 0;
+  padding: 5px 42px;
+}
+
+.findInput {
+  padding: 4px 20px;
+  font-size: 16px;
+  margin-bottom: 20px;
+}
+@media (max-width: 469px) {
+  .viewTransactionContainer {
+    margin-top: 5rem;
+  }
+  .viewTransactionContainer .divButton {
+    justify-content: center;
+    flex-direction: column;
+  }
+}

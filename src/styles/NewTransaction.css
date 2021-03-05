@@ -1,0 +1,43 @@
+.newTransactionContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  margin-top: 13rem;
+}
+
+.newTransactionContainer .input {
+  margin: 15px;
+}
+.newTransactionContainer .divButton {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-around;
+}
+
+.newTransactionContainer small {
+  color: red;
+}
+.newTransactionContainer .divInput {
+  display: flex;
+  flex-direction: row;
+  text-align: center;
+}
+
+@media (max-width: 469px) {
+  .newTransactionContainer {
+    margin-top: 5rem;
+  }
+  .newTransactionContainer .divInput {
+    flex-direction: column;
+  }
+  .newTransactionContainer .divButton {
+    justify-content: center;
+    flex-direction: column;
+  }
+  .newTransactionContainer .divButton button {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+}
