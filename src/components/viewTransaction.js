@@ -72,11 +72,7 @@ class NewTransaction extends Component {
     const state = this.state;
 
     return state.transactions.map((item, key) => {
-      if (item.establishment !== item.establishment) {
-        return <option key={key}>{item.establishment}</option>;
-      } else {
-        return <option key={key}>{item.establishment}</option>;
-      }
+      return <option key={key}>{item.establishment}</option>;
     });
   }
 
