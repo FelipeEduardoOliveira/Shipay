@@ -6,7 +6,7 @@ import ViewTransaction from "./components/viewTransaction";
 
 function Router() {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename="shipay">
       <Switch>
         <Route exact path="/" component={NewTransaction} />
         <Route exact path="/vendas" component={ViewTransaction} />
