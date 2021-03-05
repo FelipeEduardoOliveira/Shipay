@@ -150,15 +150,19 @@ class NewTransaction extends Component {
 
   async saveTransaction() {
     console.log("chegou 4");
+
     const newTransaction = {
       value: this.state.value,
       establishment: this.state.establishment,
       client: this.state.client,
       description: this.state.description,
     };
+
+    console.log("Criou o newTransaction");
     await this.setState({
       transactions: [...this.state.transactions, newTransaction],
     });
+    console.log("Adicionou a state");
 
     this.setState({
       value: "",
@@ -166,7 +170,11 @@ class NewTransaction extends Component {
       client: "",
       description: "",
     });
+
+    console.log("Limpou os campos");
+
     this.saveStorage();
+    console.log("Chamou o save");
   }
 
   saveStorage() {
