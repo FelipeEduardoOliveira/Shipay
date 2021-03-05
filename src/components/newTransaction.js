@@ -168,14 +168,15 @@ class NewTransaction extends Component {
         establishment: "",
         client: "",
         description: "",
-      },
-      this.saveStorage
+      }
+      // this.saveStorage
     );
     console.log("Adicionou a state");
 
     // console.log("Limpou os campos");
 
-    console.log("Chamou o save");
+    // console.log("Chamou o save");
+    this.notify();
   }
 
   saveStorage() {
