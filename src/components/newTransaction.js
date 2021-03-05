@@ -158,10 +158,9 @@ class NewTransaction extends Component {
       description: this.state.description,
     };
 
+    console.log("Criou o newTransaction 1");
     const newTransaction = [...this.state.transactions, transaction];
-
-    console.log("Criou o newTransaction");
-
+    console.log("Criou o newTransaction 2");
     this.setState(
       {
         transactions: newTransaction,
