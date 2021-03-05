@@ -49,51 +49,53 @@ class NewTransaction extends Component {
       this.setState({ errorMensage: "Digite o valor da compra" });
       return;
     }
-    this.isValidCPF(state.client);
-  }
+    // this.isValidCPF(state.client);
 
-  isValidCPF(cpf) {
-    console.log("chegou 3");
-    if (typeof cpf !== "string") return false;
-    cpf = cpf.replace(/[\s.-]*/gim, "");
-    if (cpf.length !== 11)
-      return this.setState({ errorMensage: "CPF Incompleto" });
-    if (
-      !cpf ||
-      cpf.length !== 11 ||
-      cpf === "00000000000" ||
-      cpf === "11111111111" ||
-      cpf === "22222222222" ||
-      cpf === "=33333333333" ||
-      cpf === "44444444444" ||
-      cpf === "55555555555" ||
-      cpf === "66666666666" ||
-      cpf === "77777777777" ||
-      cpf === "88888888888" ||
-      cpf === "99999999999"
-    ) {
-      this.setState({ errorMensage: "Não caiu aqui" });
-    }
-    var soma = 0;
-    var resto;
-    for (var i = 1; i <= 9; i++)
-      soma = soma + parseInt(cpf.substring(i - 1, i)) * (11 - i);
-    resto = (soma * 10) % 11;
-    if (resto === 10 || resto === 11) resto = 0;
-    if (resto !== parseInt(cpf.substring(9, 10)))
-      return this.setState({
-        errorMensage: "CPF inválido",
-      });
-    soma = 0;
-    for (i = 1; i <= 10; i++)
-      soma = soma + parseInt(cpf.substring(i - 1, i)) * (12 - i);
-    resto = (soma * 10) % 11;
-    if (resto === 10 || resto === 11) resto = 0;
-    if (resto !== parseInt(cpf.substring(10, 11)))
-      return this.setState({ errorMensage: "CPF inválido" });
-    // this.validarCNPJ(cnpj);
     this.saveTransaction();
   }
+
+  // isValidCPF(cpf) {
+  //   console.log("chegou 3");
+  //   if (typeof cpf !== "string") return false;
+  //   cpf = cpf.replace(/[\s.-]*/gim, "");
+  //   if (cpf.length !== 11)
+  //     return this.setState({ errorMensage: "CPF Incompleto" });
+  //   if (
+  //     !cpf ||
+  //     cpf.length !== 11 ||
+  //     cpf === "00000000000" ||
+  //     cpf === "11111111111" ||
+  //     cpf === "22222222222" ||
+  //     cpf === "=33333333333" ||
+  //     cpf === "44444444444" ||
+  //     cpf === "55555555555" ||
+  //     cpf === "66666666666" ||
+  //     cpf === "77777777777" ||
+  //     cpf === "88888888888" ||
+  //     cpf === "99999999999"
+  //   ) {
+  //     this.setState({ errorMensage: "Não caiu aqui" });
+  //   }
+  //   var soma = 0;
+  //   var resto;
+  //   for (var i = 1; i <= 9; i++)
+  //     soma = soma + parseInt(cpf.substring(i - 1, i)) * (11 - i);
+  //   resto = (soma * 10) % 11;
+  //   if (resto === 10 || resto === 11) resto = 0;
+  //   if (resto !== parseInt(cpf.substring(9, 10)))
+  //     return this.setState({
+  //       errorMensage: "CPF inválido",
+  //     });
+  //   soma = 0;
+  //   for (i = 1; i <= 10; i++)
+  //     soma = soma + parseInt(cpf.substring(i - 1, i)) * (12 - i);
+  //   resto = (soma * 10) % 11;
+  //   if (resto === 10 || resto === 11) resto = 0;
+  //   if (resto !== parseInt(cpf.substring(10, 11)))
+  //     return this.setState({ errorMensage: "CPF inválido" });
+  //   // this.validarCNPJ(cnpj);
+  //   this.saveTransaction();
+  // }
 
   // validarCNPJ(cnpj) {
   //   cnpj = cnpj.replace(/[^\d]+/g, "");
@@ -151,7 +153,7 @@ class NewTransaction extends Component {
   saveTransaction() {
     console.log("chegou 4");
 
-    const transaction = {
+    const newTransaction = {
       value: this.state.value,
       establishment: this.state.establishment,
       client: this.state.client,
@@ -159,11 +161,9 @@ class NewTransaction extends Component {
     };
 
     console.log("Criou o newTransaction 1");
-    const newTransaction = [...this.state.transactions, transaction];
-    console.log("Criou o newTransaction 2");
     this.setState(
       {
-        transactions: newTransaction,
+        transactions: [...this.state.transactions, newTransaction],
         value: "",
         establishment: "",
         client: "",
@@ -173,7 +173,7 @@ class NewTransaction extends Component {
     );
     console.log("Adicionou a state");
 
-    console.log("Limpou os campos");
+    // console.log("Limpou os campos");
 
     console.log("Chamou o save");
   }
@@ -200,6 +200,15 @@ class NewTransaction extends Component {
     });
   }
 
+  preenche() {
+    this.setState({
+      client: "41978635869",
+      value: "45.54",
+      establishment: "40451399000141",
+      description: "teste",
+    });
+  }
+
   render() {
     return (
       <div className="newTransactionContainer">
@@ -214,6 +223,9 @@ class NewTransaction extends Component {
           draggable
           pauseOnHover
         />
+        <a style={{ color: "black" }} onClick={() => this.preenche()}>
+          Preencher
+        </a>
         <form onSubmit={(e) => this.handleSubmit(e)}>
           <small>{this.state.errorMensage}</small>
           <div className="divInput">
